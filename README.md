@@ -12,3 +12,5 @@ Status: first draft, for discussion. It exists to start the conversation that le
 | [`roadmap/README.md`](roadmap/README.md) | Conventions used in the documents. |
 
 Rendered page: https://claude.ai/artifact/NCzK1pkSpjGxpyrVmcNABa
+
+Feedback: one issue per decision is open under the `decision` label; row-level feedback uses `row`; factual errors use `correction`. See [CONTRIBUTING.md](CONTRIBUTING.md).
