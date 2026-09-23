@@ -362,8 +362,6 @@ These are not "nice to have later". They are the things a Mac owner assumes work
 - **Today.** 5.1 and 5.2 are undecided, and no readiness document states either limit.
 - **Why it matters for daily-driver.** Stating a limit is a supported configuration; not stating it is a bug report queue.
 - **Candidate path.** If 5.1 and 5.2 do not fit in v1, the honest version is a single sentence in the readiness document — something of the form *v1 targets a single display and loopback-only networking; multi-monitor and characterised coexistence with other virtualization apps are post-v1* — rather than silence. This is the cheapest row in the document and it is entirely **your call**.
-
-
 - **Owner.** Try; the sentence goes in the readiness document.
 - **Dependency.** 5.1 and 5.2 being decided either way.
 - **Horizon.** 1.
