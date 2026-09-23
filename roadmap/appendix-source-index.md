@@ -6,8 +6,8 @@ All sources cited by `01-exec-briefing.md` and `02-technical-roadmap.md`. Read d
 
 | Repository | Commit / version | Location | Notes |
 |---|---|---|---|
-| omacom/try-omarchy | `58cbac5` (main, 2026-09-15) for the 2026-09-16 anchors; `7f3ce66` (upstream/main, 2026-09-22, unreleased) for everything marked "main" | `~/dev/try-omarchy` | v0.4.1 tagged 2026-09-15; 29 PRs (31 commits) merged to main since v0.4.1 by 13 authors, as of 2026-09-22 |
-| omacom/omarchy | `e48f8382` (quattro, v4.0.0-358, 2026-09-12) | `~/dev/omarchy` | Tags to v4.0.3 present; v4.0.4 released 2026-09-15 upstream |
+| omacom/try-omarchy | `58cbac5` (main, 2026-09-15) for the 2026-09-16 anchors; `7f3ce66` (upstream/main, 2026-09-22, unreleased) for everything marked "main" | local checkout | v0.4.1 tagged 2026-09-15; 29 PRs (31 commits) merged to main since v0.4.1 by 13 authors, as of 2026-09-22 |
+| omacom/omarchy | `e48f8382` (quattro, v4.0.0-358, 2026-09-12) | local checkout | Tags to v4.0.3 present; v4.0.4 released 2026-09-15 upstream |
 
 ## try-omarchy file anchors used
 
