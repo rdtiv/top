@@ -2,7 +2,9 @@
 
 A community-facing proposal for taking [Try Omarchy](https://github.com/omacom/try-omarchy), the macOS app that runs the Omarchy Linux desktop in a virtual machine on Apple silicon, from "try it" to a daily driver for people whose home base is macOS.
 
-Status: first draft, for discussion. It exists to start the conversation that leads to a more refined roadmap; nothing in it is settled. The maintainer decides; this repository proposes.
+Try Omarchy is created and maintained by Eduardo ([@themartiano](https://github.com/themartiano)). This roadmap exists because of what he and the project's contributors have already built, in a few weeks, at a pace few projects manage: the VM, the graphics chain, the host bridges, and a release a week. Thank you. The maintainer decides; this repository proposes.
+
+Status: first draft, for discussion. It exists to start the conversation that leads to a more refined roadmap; nothing in it is settled.
 
 | Document | What it is |
 |---|---|
