@@ -4,6 +4,7 @@ This repository holds a proposal, not a product. The maintainer of Try Omarchy d
 
 - **A decision.** The executive briefing proposes five. Each has an open issue labelled `decision`. Reply there with accept, amend (say how), or reject (say why). One issue per decision, so the answer is easy to find later.
 - **A row.** The technical roadmap is a set of numbered rows (2.1, 3.4, and so on). Open an issue labelled `row`, name the row, and say what is wrong, missing, or already done. A pull request that edits the row directly is just as welcome.
+- **Something missing.** Anything the documents do not cover at all goes in the `missing` issue (#6); if it grows into a real row, it gets its own `row` issue.
 - **A correction.** Every factual claim carries an anchor: a `path:line` in omacom/try-omarchy, an issue or pull request number, or a URL. If a claim is wrong, open an issue labelled `correction` with the anchor and the corrected wording, or send a pull request that changes both the text and the source index.
 
 Conventions the documents follow, so that edits fit:
