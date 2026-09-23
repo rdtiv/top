@@ -7,7 +7,7 @@ Files in this folder, in reading order:
 | File | What it is | Who it is for |
 |---|---|---|
 | `01-exec-briefing.md` | Executive briefing. Ten pages max. Opens with a TL;DR and a terms list so it reads without project context; then thesis, personas, five decisions, three horizons, the asks, non-goals. | Eduardo (primary). Fail-Safe and Omarchy M owners may read. |
-| `02-technical-roadmap.md` | Technical roadmap. Opens with a TL;DR and an 89-term glossary. A problem graph ordered by blocking relationship, with owner, horizon, evidence anchor, and risk on every row, plus a proposed Mac V1-READINESS. | Whoever sequences issues. Written so Eduardo could lift it into `docs/V1-READINESS.md`. |
+| `02-technical-roadmap.md` | Technical roadmap. Opens with a TL;DR and a glossary of about ninety-five terms. A problem graph ordered by blocking relationship, with owner, horizon, evidence anchor, and risk on every row, plus a proposed Mac V1-READINESS. | Whoever sequences issues. Written so Eduardo could lift it into `docs/V1-READINESS.md`. |
 | `appendix-source-index.md` | Every source the two documents cite: repository file anchors, issues, PRs, and URLs, with the date each was read. | Verification. |
 
 Conventions used in both documents:

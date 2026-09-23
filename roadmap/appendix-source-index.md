@@ -6,7 +6,7 @@ All sources cited by `01-exec-briefing.md` and `02-technical-roadmap.md`. Read d
 
 | Repository | Commit / version | Location | Notes |
 |---|---|---|---|
-| omacom/try-omarchy | `58cbac5` (main, 2026-09-15) for the 2026-09-16 anchors; `7f3ce66` (upstream/main, 2026-09-22, unreleased) for everything marked "main" | `~/dev/try-omarchy` | v0.4.1 tagged 2026-09-15; 30 PRs merged to main 2026-09-15..22 |
+| omacom/try-omarchy | `58cbac5` (main, 2026-09-15) for the 2026-09-16 anchors; `7f3ce66` (upstream/main, 2026-09-22, unreleased) for everything marked "main" | `~/dev/try-omarchy` | v0.4.1 tagged 2026-09-15; 29 PRs (31 commits) merged to main since v0.4.1 by 13 authors, as of 2026-09-22 |
 | omacom/omarchy | `e48f8382` (quattro, v4.0.0-358, 2026-09-12) | `~/dev/omarchy` | Tags to v4.0.3 present; v4.0.4 released 2026-09-15 upstream |
 
 ## try-omarchy file anchors used
@@ -14,7 +14,8 @@ All sources cited by `01-exec-briefing.md` and `02-technical-roadmap.md`. Read d
 | Anchor | What it establishes |
 |---|---|
 | `README.md:28` | "Video decoding is CPU-only ... An improved video path is in development." |
-| `README.md:129-137` | Runtime tap unmaintained since 2026-01-14; render patch vendored; unverified items after the QEMU 11.1.1 port |
+| `README.md:41-43` | Render patch source tap unmaintained since 2026-01-14; patch vendored |
+| `README.md:129-137` | KosmicKrisp not in the path; unverified items after the QEMU 11.1.1 port |
 | `README.md:224-231` | Bridged mode on Wi-Fi enables temporary host-wide DHCP handling that can affect other virtualization apps |
 | `README.md:364-374` | Requirements: Apple silicon, macOS 15+; nested virt on M3+ with macOS 26+ |
 | `README.md:408-415` | In-guest updater advances ordinary packages only; kernel, runtime, backports pinned; reset is the way to a new factory |
