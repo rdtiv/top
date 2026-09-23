@@ -17,7 +17,7 @@ This is a problem graph, not a wishlist. Rows are ordered by blocking relationsh
 | Horizon | Meaning | Contents |
 |---|---|---|
 | **Horizon 0** | Unblocks the daily-driver claim. Without these, the claim is contradicted by the architecture or by the crash reports. | P0: five rows in section 2 — four problems, plus 2.5 as a candidate held open until it reproduces on a released macOS. |
-| **Horizon 1** | What a Mac `docs/V1-READINESS.md` gates. | P1 (section 3) + selected P2 (section 4: the video track and the 9p decision) + Mac-resident table stakes (section 5). |
+| **Horizon 1** | What a Mac `docs/V1-READINESS.md` gates. | P1 (section 3) + selected P2 (section 4: the video track and the 9p decision) + P3, the Mac-resident table stakes (section 5). P3 is inside Horizon 1, not after it: multi-monitor and Parallels coexistence are what a Mac-resident expects, or v1 says explicitly that it excludes them. |
 | **Horizon 2** | After v1. Named so they are visibly *not* v1, not so they get built. | Section 6. |
 
 ### Owner legend
@@ -351,7 +351,7 @@ The architecture for this section is fixed and stated once: macOS is the home ba
 
 ---
 
-## 5. Horizon 1: Mac-resident table stakes
+## 5. Horizon 1 (P3): Mac-resident table stakes
 
 These are not "nice to have later". They are the things a Mac owner assumes work because everything else on their Mac does. If v1 cannot carry them, v1 should say so in one explicit sentence rather than leaving the reader to discover it.
 
