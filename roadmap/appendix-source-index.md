@@ -139,6 +139,17 @@ Verbatim maintainer and contributor quotes appear in `02-technical-roadmap.md` r
 | DHH on Omarchy M | https://x.com/dhh/status/2098507502979539361 | Incorporation announcement |
 | Try Omarchy for Windows README, CHANGELOG.md, and docs/V1-READINESS.md | https://github.com/omacom/try-omarchy-windows | Process template: v1 scope, release gates, evidence records, compatibility revisions. V1-READINESS.md removed 2026-09-20 ("Remove the public v1 roadmap"); README and CHANGELOG declare v1.0.0 dated 2026-09-22 but no v1.0.0 release tag exists yet (latest published: v0.0.20-preview) |
 | Introducing Omarchy Dragon (2026-09-18) | https://omarchy.org/news/2026/09/introducing-omarchy-dragon/ | Snapdragon team; Matt Gilg on aarch64 packages; Miguel Cruz shared with Omarchy M |
+| Apple support: background app termination in macOS 27 | https://support.apple.com/en-us/125671 | Rules exempt only apps with "a visible presence on screen, such as an icon in the upper right part of the menu bar, or a visible window" |
+| Squirrel.Mac #336 (2026-09-19) | https://github.com/Squirrel/Squirrel.Mac/issues/336 | Updater helper killed by macOS 27 for lack of visible presence; 30/30 on 26.7, 12/30 on 27.0 |
+| utmapp/UTM #6929 | https://github.com/utmapp/UTM/issues/6929 | "QEMU seems to only support 1 GPU-supported display at a time" |
+| rust-vmm/vhost #110 | https://github.com/rust-vmm/vhost/issues/110 | virtiofsd's vhost dependency does not build on macOS; open since 2022 |
+| omarchy-pkgs PR #591 | https://github.com/omacom/omarchy-pkgs/pull/591 | `linux-aurora`, an Apple-silicon kernel for edge and rc (open) |
+| omarchy-pkgs PR #470 | https://github.com/omacom/omarchy-pkgs/pull/470 | `omarchy-steam-fex` for Apple silicon, merged 2026-09-20 |
+| omarchy-pkgs `pkgbuilds/hyprland/.omarchy/package.json` | https://github.com/omacom/omarchy-pkgs | Hyprland aarch64 `rebuilt_against` aquamarine 0.15.0-2 from Arch Linux ARM; no aquamarine PKGBUILD in the repo |
+| omarchy `migrations/1789325478.sh` (2026-09-14) | https://github.com/omacom/omarchy | First architecture guard upstream: exits on non-x86_64 |
+| omarchy `manual/49-omarchy-on.md` | https://github.com/omacom/omarchy | Lists a Parallels guide under "Apple Virtual Machine"; no mention of Try Omarchy |
+| omarchy `config/chromium-flags.conf` | https://github.com/omacom/omarchy | Wayland, password-store, and extension flags only; no GPU flags |
+| qemu-devel: HVF migration fix series (April 2026) | https://ratatoskr.run/qemu-arm/2026/04/14443671/t | Snapshot-load assertion and dirty-logging crash on HVF; merge status unconfirmed |
 | omacom/omarchy-mac-installer | https://github.com/omacom/omarchy-mac-installer | Native installer extraction, created 2026-09-20; "not an installation release" |
 | WWDC26 session 224 | https://developer.apple.com/videos/play/wwdc2026/224/ | macOS 27: custom Virtio devices (Linux guests), USB via Accessory Access, DiskImageKit ASIF layers, vmnet topologies and port forwarding, EFI secure boot |
 | Bitrise WWDC26 summary | https://bitrise.io/blog/post/wwdc26-the-virtualization-framework-updates-that-matter-for-large-mac-fleets | Same, secondary |
