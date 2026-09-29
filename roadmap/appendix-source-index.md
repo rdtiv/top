@@ -1,13 +1,13 @@
 # Appendix: source index
 
-All sources cited by `01-exec-briefing.md` and `02-technical-roadmap.md`. Read dates are 2026-09-15 unless noted. Repository anchors are `path:line` at the stated commit.
+All sources cited by `01-exec-briefing.md` and `02-technical-roadmap.md`. Read dates are 2026-09-15 unless noted; everything added or updated in the 2026-09-28 revision was read on 2026-09-28. Repository anchors are `path:line` at the stated commit.
 
 ## Repositories read locally
 
 | Repository | Commit / version | Location | Notes |
 |---|---|---|---|
-| omacom/try-omarchy | `58cbac5` (main, 2026-09-15) for the 2026-09-16 anchors; `7f3ce66` (upstream/main, 2026-09-22, unreleased) for everything marked "main" | local checkout | v0.4.1 tagged 2026-09-15; 29 PRs (31 commits) merged to main since v0.4.1 by 13 authors, as of 2026-09-22 |
-| omacom/omarchy | `e48f8382` (quattro, v4.0.0-358, 2026-09-12) | local checkout | Tags to v4.0.3 present; v4.0.4 released 2026-09-15 upstream |
+| omacom/try-omarchy | `58cbac5` (main, 2026-09-15) for the 2026-09-16 anchors; `898f920` (upstream/main, 2026-09-28, unreleased) for everything marked "main" (the 2026-09-22 revision read `7f3ce66`) | local checkout | v0.4.1 tagged 2026-09-15 and still the latest release; 42 PRs merged to main since v0.4.1 by 15 authors, as of 2026-09-28 (13 commits since `7f3ce66`) |
+| omacom/omarchy | `e48f8382` (quattro, v4.0.0-358, 2026-09-12); `e332dc97` (quattro, 2026-09-28) for the architecture guard | local checkout | v4.0.4 (2026-09-15) still the latest release; still one `uname -m` guard |
 
 ## try-omarchy file anchors used
 
@@ -42,17 +42,25 @@ All sources cited by `01-exec-briefing.md` and `02-technical-roadmap.md`. Read d
 | `.github/workflows/ci.yml:26-28` | Guest image cannot be built on GitHub-hosted macOS runners |
 | `CONTRIBUTING.md` | "one product target: a native Apple Silicon macOS app that runs pinned upstream Omarchy in a project-built ARM64 virtual machine image" |
 
-## try-omarchy on main at 7f3ce66 (read 2026-09-22)
+## try-omarchy on main at 898f920 (read 2026-09-22 at 7f3ce66, re-read 2026-09-28)
 
 | Anchor | What it establishes |
 |---|---|
 | `docs/integration-updates.md` | Integration manager: read-only 9p share at `/mnt/try-omarchy-updates`, hash-verified bundles, backups, resumable install, status port; boundary quote: "does not replace the kernel, upgrade the graphics stack, repair package holds, install 1Password integration, or reproduce every change in a newer factory image" |
-| `integrations/DESIGN.md` | Design note; initial payload sudo Touch ID; kernel and graphics package replacement excluded |
+| `integrations/DESIGN.md` | Design note; initial payload sudo Touch ID, now "sudo Touch ID support and the Mac battery mirror" (898f920); kernel and graphics package replacement excluded |
+| `docs/integration-updates.md` "Features and boundaries" (898f920) | "The bundle contains upstream sudo Touch ID support and the Mac battery mirror" (#252); boundary sentence unchanged |
+| `guest/pacman.aarch64.conf:17` | `IgnorePkg = linux-aarch64 linux-aarch64-headers hyprland aquamarine hyprtoolkit hyprland-guiutils` |
+| `guest/packages.lock.json:409` | `"linux-aarch64": "7.2.6-1"` |
+| `guest/native-overlay/usr/local/bin/omarchy-native-mac-share:85` | 9p mount with `cache=mmap` |
+| `macos/Sources/OmarchyVMHelper/GuestIntegrationStatus.swift` | `NSStatusItem` "VM integrations" created by the integration bridge process |
+| `macos/run-qemu-gpu.sh:1952` | The launcher script starts `--bridge-integrations` as its own process beside QEMU |
+| `macos/Info.plist:29` | `LSUIElement` true |
+| `README.md` "Passing a USB device to Omarchy (experimental)" | One device, off until chosen; "Unprivileged, which is how this app ships"; `com.apple.vm.device-access` or root needed for driver-claimed devices; "Which door to open is a decision for whoever ships the app" |
 | `docs/memory-reclamation.md` | `virtio-balloon-pci,free-page-reporting=on` plus pinned HVF reclaim patch (unmap, demand-zero remap, acknowledge); asynchronous; needs runtime update and VM restart, not a new disk |
 | `docs/app-updates.md` | Version display and opt-in release checks (#234); Sparkle 2 recommended for installation; prerequisites listed |
 | `docs/architecture.md` (diff vs 58cbac5) | aquamarine 0.15.1-1 / libaquamarine.so=14 against Hyprland 0.56.2; battery port `dev.tryomarchy.battery`; macOS 15 on EL1, VirGL source-built for 15.0; Traditional Chinese kernel argument; disk capacity |
 | `macos/build-qemu-gpu-runtime.sh` | VirGL 1.3.0 from gitlab.freedesktop.org source with startergo tap v1.0.42 patches; ANGLE 1.0.16 and libepoxy 1.0.5 still from bottles |
-| `macos/Sources/OmarchyVMHelper/VMApplicationController.swift` (`shutDownForSettings`) | `system_powerdown` over QMP is used by the restart-for-settings path; app quit still forwards SIGTERM |
+| `macos/Sources/OmarchyVMHelper/VMApplicationController.swift` (`shutDownForSettings`) | `system_powerdown` over QMP is used by the restart-for-settings path; app quit still forwards SIGTERM (line 465 at 898f920) |
 | `README.md` (main) | Start automatically; Try Omarchy Settings; Shut down to manage…; Maximum disk size 64 GiB; Ghostty; stable bridged MAC; Touch ID for 1Password; clock recovery; memory reclamation; Traditional Chinese |
 
 ## omarchy file anchors used
@@ -95,9 +103,8 @@ Verbatim maintainer and contributor quotes appear in `02-technical-roadmap.md` r
 | try-omarchy #92 | Filesystem-consistent VM snapshots | open |
 | try-omarchy #146 | Suspend support / pause | open |
 | try-omarchy #145 | Multiple instances | open |
-| try-omarchy #151, #213 | M4 crashes (EXC_GUARD in hv_vm_unmap; M4 Pro) | open |
+| try-omarchy #151, #213 | M4 crashes (EXC_GUARD in hv_vm_unmap; M4 Pro) | open; candidate fix #277 on main, and #277's author asked on 2026-09-28 for #151 to be closed |
 | try-omarchy #133, #191 | Touch ID / Keychain; passkeys and Bluetooth | open |
-| try-omarchy #183 | Start menu does not appear after shutdown | open |
 | try-omarchy #108, #114, #118, #122, #127, #128 | Omarchy Link series | closed |
 | try-omarchy #57, #137, #18 | ARM package availability threads | see roadmap |
 | try-omarchy #215, #216 | v0.4.1 fixes (macOS 15 EL1 path; theme and DNS actions) | merged 2026-09-15 |
@@ -108,10 +115,10 @@ Verbatim maintainer and contributor quotes appear in `02-technical-roadmap.md` r
 | try-omarchy PR #154 | Safe growth for existing VM disks | merged (v0.4.0) |
 | try-omarchy #211 | macOS 15 nested-virt probe abort (HV_BAD_ARGUMENT), referenced by the launcher | see `macos/run-qemu-gpu.sh:1471-1474` |
 | try-omarchy PR #141 | Disk size at initial setup | open |
-| try-omarchy #189, #68 | Guest build memory on 16 GB Macs; macOS minimum mismatch and from-source build blockers | open |
+| try-omarchy #189, #68 | Guest build memory on 16 GB Macs; macOS minimum mismatch and from-source build blockers | #189 closed 2026-09-28 by PR #271; #68 open |
 | omarchy #8645, #8530, #9576, #8897 | Upstream aarch64 threads: x86-only install menu entries; Voxtype; 1Password pin; man-db/Chromium SIGTRAP | open |
 | try-omarchy PR #193 | Discover and update sudo integrations in existing VMs (Fail-Safe): the integration manager | merged 2026-09-21 |
-| try-omarchy PR #243 | Return unused guest RAM to macOS (themartiano); 728.3 / 742.3 / 718.3 MiB returned per 768 MiB freed on macOS 27.0, 0 with reporting off; 29 PRs and 31 commits since v0.4.1 from 13 authors | merged 2026-09-22 |
+| try-omarchy PR #243 | Return unused guest RAM to macOS (themartiano); 728.3 / 742.3 / 718.3 MiB returned per 768 MiB freed on macOS 27.0, 0 with reporting off; 29 PRs and 31 commits since v0.4.1 from 13 authors as of 2026-09-22 | merged 2026-09-22 |
 | try-omarchy PR #152 | Automatic startup, in-guest Try Omarchy Settings, Restart Try Omarchy… (drdator) | merged 2026-09-21 |
 | try-omarchy PR #246 | Sparse VM disk capacity with a 64 GiB default (themartiano); closes #104, #132, #244 | merged 2026-09-22 |
 | try-omarchy PR #242 | Restore macOS 15 support with updated graphics; VirGL 1.3.0 source-built (themartiano) | merged 2026-09-22 |
@@ -119,12 +126,21 @@ Verbatim maintainer and contributor quotes appear in `02-technical-roadmap.md` r
 | try-omarchy PR #176, #182, #184, #188, #190, #195, #209, #220, #225, #226, #233, #234, #239, #240 | Alacritty acceleration; 1Password Touch ID; clock recovery; CJK and Traditional Chinese; ISO keyboard; us-acentos; bridged MAC; battery mirror; man-db; grab-tap recovery; 1Password installer; app version and release checks; trackpad scrolling; Ghostty on ARM64 | merged 2026-09-21..22 |
 | macOS 27.0 Golden Gate release | https://www.macrumors.com/roundup/macos-27/ | Released 2026-09-14, build 26A428; the build named in #231 and #250 |
 | try-omarchy #231 | macOS 27.0 (26A428): helper self-terminates; nested-virt probe abort non-fatal; macOS 27 sends a Quit AppleEvent | open, 2026-09-18 |
-| try-omarchy #250 | macOS 27.0: v0.4.1 VM stops during startup | open, 2026-09-22 |
+| try-omarchy #250 | macOS 27.0: v0.4.1 VM stops during startup | closed 2026-09-24 by its reporter: no longer reproduces on 26A428 with v0.4.1 |
 | try-omarchy #230 | Chromium-family browsers crash-loop the GPU process on VirGL (M5 Max, macOS 27.2 beta); GLES 3.2 context refused | open, 2026-09-18 |
-| try-omarchy #232, #238, #222, #212 | App self-update; port-forward teardown blocks restart; text-injection keys; scrolling and space switching | open |
+| try-omarchy #232, #238, #222, #212 | App self-update; port-forward teardown blocks restart; text-injection keys; scrolling and space switching | #238 closed by PR #269 and #222 by PR #273, both 2026-09-28; #232 and #212 open |
 | try-omarchy #183 | Start menu after shutdown | closed 2026-09-22 (maintainer: likely addressed by #152) |
 | try-omarchy PR #168 | Maintainer 2026-09-21: "Works on my M2 Pro. What do we need to make this production-ready?"; build fixes pushed; still CONFLICTING | open |
-| omarchy-pkgs #199 | Publish an aarch64 tree at pkgs.omarchy.org | open; as of 2026-09-22 stable, rc, and edge aarch64 all return 200 (stable and rc 21 packages, edge 127 including hyprland-0.56.2-3, hyprtoolkit-0.5.4-5.1, hyprland-guiutils-0.2.2-3; no aquamarine on any tier) |
+| try-omarchy PR #197, #236, #248, #252, #254, #268, #269, #271, #272, #273, #277, #278, #282 | VirGL fence polling 1 ms on macOS; experimental one-device USB passthrough (vcanuel); stale Alacritty entry; battery mirror through the integration manager (NimbleAINinja); HDA playback across graphics stalls; hold `hyprland-guiutils` (closes #266); TCP forward restart (closes #238); build jobs bounded by memory (closes #189); guest lock-screen PAM policy (closes #259); injected keyboard text in Cocoa (closes #222); only unmap mapped HVF sections (stevederico); opt-in HVF trace log; bounded test concurrency | merged 2026-09-23..28 (read 2026-09-28) |
+| try-omarchy PR #277 / #151 | v0.4.1 runtime 13 maps / 30 unmaps (20 on unmapped ranges); main with #277 13 / 10, Mac mini M4, macOS 26.6.2 (stevederico, #151 comment 2026-09-28) | merged 2026-09-28; #151 open |
+| try-omarchy PR #275 | Keep macOS 27 from quitting the VM launcher: Info.plist opt-outs plus `disableAutomaticTermination` / `disableSuddenTermination`; "Not verified on macOS 27" | open (read 2026-09-28) |
+| try-omarchy PR #284 | Take Hyprtoolkit 0.6.0-1 and `hyprland-guiutils` 0.2.2-4 from the mirror; keep the aquamarine rebuild; lock refresh includes `linux-aarch64` 7.2.8-1; fixes #280 | open (read 2026-09-28) |
+| try-omarchy PR #270, #274, #276, #283, #279 | Stable ARM repository and guest migration (fixes #261); ARM Install-menu gaps (fixes #264); Spotify web app on ARM64 (refs #263); audio mixer at the Mac output rate (fixes #265); Command chord under full grab (refs #181) | open (read 2026-09-28) |
+| try-omarchy #281 | Shared folder `cache=mmap` on `linux-aarch64 7.2.6-1`, inside a netfs/9p regression (7.1-rc5 to 7.3-rc2, writeback cache modes) that can return or write NUL bytes; fix first in 7.2.8 (PiaoyangGuohai1) | open, 2026-09-28 |
+| try-omarchy #280, #266 | `make guest` fails: `hyprland-guiutils` 0.2.2-3 gone from Arch Linux ARM, 0.2.2-4 needs `libhyprtoolkit.so=6`; `omarchy update` fails the same way | #280 open; #266 closed 2026-09-28 by PR #268 |
+| try-omarchy #261, #262, #263, #264 | Guest `[omarchy]` repo at the channel-less `$arch` path; apps aarch64 on edge only; Install menu offers apps with no aarch64 build; raw `target not found` (seadogger; #262 as filed 2026-09-25, before stable gained some of those apps) | open |
+| try-omarchy #257, #258, #259, #265 | #233's 1Password fix in no release; in-app disk resize; lock screen not working; guest audio ~6% fast | #259 closed 2026-09-28 by PR #272; others open |
+| omarchy-pkgs #199 | Publish an aarch64 tree at pkgs.omarchy.org | open; on 2026-09-28 the tiers' `omarchy.db` files list stable 34, rc 36 and edge 159 packages (2026-09-22: 21, 21, 127). Stable and rc carry `hyprland-0.56.2-4`; rc carries `linux-aurora-7.1.12.aurora2-9`; edge carries `hyprland-0.56.2-4`, `aquamarine-0.15.1-1.1`, `hyprtoolkit-0.5.4-5.1`, `hyprland-guiutils-0.2.2-3`, `linux-aurora-7.1.12.aurora2-11`, `omarchy-mac`, `omarchy-mac-boot`, `m1n1-aurora`. Stable also carries `cursor-bin`, `visual-studio-code-bin`, `claude-desktop` |
 | omarchy-pkgs PR #240 | Add native AArch64 package build support (riverscn) | closed 2026-09-18, not merged: "Closing in favour of smaller PRs: 11 of these 21 packages already have aarch64 on master" |
 | omarchy-pkgs PR #223 | Publish a reusable aarch64 repository artifact | closed 2026-09-16; the Snapdragon ISO consumes the published ARM repositories directly |
 | omarchy-mac PR #345 | Use official ARM edge for the Hyprland stack | merged 2026-09-05 |
@@ -137,15 +153,18 @@ Verbatim maintainer and contributor quotes appear in `02-technical-roadmap.md` r
 |---|---|---|
 | Introducing Omarchy M (2026-09-11) | https://omarchy.org/news/2026/09/introducing-omarchy-m/ | Team, roles (Eduardo: Try Omarchy; Shun Li: aarch64 packages and generic ARM64 VM images plus guest tools; Joshua Warren: MLX), M1/M2 first, "finish what Asahi started", apple@omarchy.org |
 | DHH on Omarchy M | https://x.com/dhh/status/2098507502979539361 | Incorporation announcement |
-| Try Omarchy for Windows README, CHANGELOG.md, and docs/V1-READINESS.md | https://github.com/omacom/try-omarchy-windows | Process template: v1 scope, release gates, evidence records, compatibility revisions. V1-READINESS.md removed 2026-09-20 ("Remove the public v1 roadmap"); README and CHANGELOG declare v1.0.0 dated 2026-09-22 but no v1.0.0 release tag exists yet (latest published: v0.0.20-preview) |
+| Try Omarchy for Windows README, CHANGELOG.md, and docs/V1-READINESS.md | https://github.com/omacom/try-omarchy-windows | Process template: v1 scope, release gates, evidence records, compatibility revisions. V1-READINESS.md removed 2026-09-20 ("Remove the public v1 roadmap"). v1.0.0 release notes drafted 2026-09-22 (`8824eb9`) were withdrawn on 2026-09-23 (`be615ae`) and re-issued as v0.1.0 notes the same day (`ec22609`); app releases v0.1.0 through v0.6.0 (latest, 2026-09-27); no v1.0.0 app release (a runtime release, `runtime-v1-r18`, is titled for v1.0.0) (read 2026-09-28) |
+| try-omarchy-windows `docs/RELEASE-READINESS.md` | https://github.com/omacom/try-omarchy-windows/blob/main/docs/RELEASE-READINESS.md | Created 2026-09-23 (`be615ae`, "Document public preview and non-preview readiness"); a per-release review with signed-candidate and acceptance records under `docs/evidence/`, updated through v0.6.0 |
 | Introducing Omarchy Dragon (2026-09-18) | https://omarchy.org/news/2026/09/introducing-omarchy-dragon/ | Snapdragon team; Matt Gilg on aarch64 packages; Miguel Cruz shared with Omarchy M |
 | Apple support: background app termination in macOS 27 | https://support.apple.com/en-us/125671 | Rules exempt only apps with "a visible presence on screen, such as an icon in the upper right part of the menu bar, or a visible window" |
-| Squirrel.Mac #336 (2026-09-19) | https://github.com/Squirrel/Squirrel.Mac/issues/336 | Updater helper killed by macOS 27 for lack of visible presence; 30/30 on 26.7, 12/30 on 27.0 |
+| Squirrel.Mac #336 (2026-09-19) | https://github.com/Squirrel/Squirrel.Mac/issues/336 | Updater helper failing on macOS 27; installs completed 30 of 30 on 26.7, 12 of 16 on 27.0 |
 | utmapp/UTM #6929 | https://github.com/utmapp/UTM/issues/6929 | "QEMU seems to only support 1 GPU-supported display at a time" |
 | rust-vmm/vhost #110 | https://github.com/rust-vmm/vhost/issues/110 | virtiofsd's vhost dependency does not build on macOS; open since 2022 |
-| omarchy-pkgs PR #591 | https://github.com/omacom/omarchy-pkgs/pull/591 | `linux-aurora`, an Apple-silicon kernel for edge and rc (open) |
+| omarchy-pkgs PR #591 | https://github.com/omacom/omarchy-pkgs/pull/591 | `linux-aurora`, "the Apple Silicon kernel Omarchy Macs boot today", Aurora Silicon's fork of the Asahi kernel, for edge and rc; merged 2026-09-23; since 2026-09-25 (`0a16d43`) the recipe publishes to edge only |
+| omarchy-pkgs `pkgbuilds/linux-aurora/config` | https://github.com/omacom/omarchy-pkgs | `CONFIG_ARM64_16K_PAGES=y`; `# CONFIG_SND_HDA_INTEL is not set`; `CONFIG_VIRTIO_PCI`, `CONFIG_DRM_VIRTIO_GPU`, `CONFIG_9P_FS`, `CONFIG_VIRTIO_BALLOON` as modules (read 2026-09-28) |
+| omarchy-pkgs PR #628 | https://github.com/omacom/omarchy-pkgs/pull/628 | aquamarine 0.15.1-1.1 on edge, aarch64 only: Arch's 0.15.1-1 plus an Apple DCP CRTC-rescan patch; names a follow-up Hyprland rebuild; merged 2026-09-25 |
 | omarchy-pkgs PR #470 | https://github.com/omacom/omarchy-pkgs/pull/470 | `omarchy-steam-fex` for Apple silicon, merged 2026-09-20 |
-| omarchy-pkgs `pkgbuilds/hyprland/.omarchy/package.json` | https://github.com/omacom/omarchy-pkgs | Hyprland aarch64 `rebuilt_against` aquamarine 0.15.0-2 from Arch Linux ARM; no aquamarine PKGBUILD in the repo |
+| omarchy-pkgs `pkgbuilds/hyprland/.omarchy/package.json` | https://github.com/omacom/omarchy-pkgs | Hyprland aarch64 `rebuilt_against` aquamarine 0.15.0-2 (unchanged 2026-09-28); `pkgbuilds/aquamarine` now exists (PR #628) |
 | omarchy `migrations/1789325478.sh` (2026-09-14) | https://github.com/omacom/omarchy | First architecture guard upstream: exits on non-x86_64 |
 | omarchy `manual/49-omarchy-on.md` | https://github.com/omacom/omarchy | Lists a Parallels guide under "Apple Virtual Machine"; no mention of Try Omarchy |
 | omarchy `config/chromium-flags.conf` | https://github.com/omacom/omarchy | Wayland, password-store, and extension flags only; no GPU flags |
