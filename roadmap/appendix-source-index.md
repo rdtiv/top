@@ -127,7 +127,7 @@ Verbatim maintainer and contributor quotes appear in `02-technical-roadmap.md` r
 | macOS 27.0 Golden Gate release | https://www.macrumors.com/roundup/macos-27/ | Released 2026-09-14, build 26A428; the build named in #231 and #250 |
 | try-omarchy #231 | macOS 27.0 (26A428): helper self-terminates; nested-virt probe abort non-fatal; macOS 27 sends a Quit AppleEvent | open, 2026-09-18 |
 | try-omarchy #250 | macOS 27.0: v0.4.1 VM stops during startup | closed 2026-09-24 by its reporter: no longer reproduces on 26A428 with v0.4.1 |
-| try-omarchy #230 | Chromium-family browsers crash-loop the GPU process on VirGL (M5 Max, macOS 27.2 beta); GLES 3.2 context refused | open, 2026-09-18 |
+| try-omarchy #230 | Chromium-family browsers crash-loop the GPU process on VirGL (M5 Max, macOS 27.2 beta); ES 3.0 context request refused with `EGL_BAD_ATTRIBUTE` | open, 2026-09-18 |
 | try-omarchy #232, #238, #222, #212 | App self-update; port-forward teardown blocks restart; text-injection keys; scrolling and space switching | #238 closed by PR #269 and #222 by PR #273, both 2026-09-28; #232 and #212 open |
 | try-omarchy #183 | Start menu after shutdown | closed 2026-09-22 (maintainer: likely addressed by #152) |
 | try-omarchy PR #168 | Maintainer 2026-09-21: "Works on my M2 Pro. What do we need to make this production-ready?"; build fixes pushed; still CONFLICTING | open |
@@ -157,11 +157,12 @@ Verbatim maintainer and contributor quotes appear in `02-technical-roadmap.md` r
 | try-omarchy-windows `docs/RELEASE-READINESS.md` | https://github.com/omacom/try-omarchy-windows/blob/main/docs/RELEASE-READINESS.md | Created 2026-09-23 (`be615ae`, "Document public preview and non-preview readiness"); a per-release review with signed-candidate and acceptance records under `docs/evidence/`, updated through v0.6.0 |
 | Introducing Omarchy Dragon (2026-09-18) | https://omarchy.org/news/2026/09/introducing-omarchy-dragon/ | Snapdragon team; Matt Gilg on aarch64 packages; Miguel Cruz shared with Omarchy M |
 | Apple support: background app termination in macOS 27 | https://support.apple.com/en-us/125671 | Rules exempt only apps with "a visible presence on screen, such as an icon in the upper right part of the menu bar, or a visible window" |
-| Squirrel.Mac #336 (2026-09-19) | https://github.com/Squirrel/Squirrel.Mac/issues/336 | Updater helper failing on macOS 27; installs completed 30 of 30 on 26.7, 12 of 16 on 27.0 |
+| Squirrel.Mac #336 (2026-09-19) | https://github.com/Squirrel/Squirrel.Mac/issues/336 | Updater helper reported failing on macOS 27; installs completed 30 of 30 on 26.7, 12 of 16 on 27.0 |
 | utmapp/UTM #6929 | https://github.com/utmapp/UTM/issues/6929 | "QEMU seems to only support 1 GPU-supported display at a time" |
 | rust-vmm/vhost #110 | https://github.com/rust-vmm/vhost/issues/110 | virtiofsd's vhost dependency does not build on macOS; open since 2022 |
 | omarchy-pkgs PR #591 | https://github.com/omacom/omarchy-pkgs/pull/591 | `linux-aurora`, "the Apple Silicon kernel Omarchy Macs boot today", Aurora Silicon's fork of the Asahi kernel, for edge and rc; merged 2026-09-23; since 2026-09-25 (`0a16d43`) the recipe publishes to edge only |
 | omarchy-pkgs `pkgbuilds/linux-aurora/config` | https://github.com/omacom/omarchy-pkgs | `CONFIG_ARM64_16K_PAGES=y`; `# CONFIG_SND_HDA_INTEL is not set`; `CONFIG_VIRTIO_PCI`, `CONFIG_DRM_VIRTIO_GPU`, `CONFIG_9P_FS`, `CONFIG_VIRTIO_BALLOON` as modules (read 2026-09-28) |
+| omarchy-pkgs `pkgbuilds/hyprtoolkit/PKGBUILD` | https://github.com/omacom/omarchy-pkgs | `pkgver=0.6.0` since `6ce22c36` (2026-09-10); the published edge aarch64 build is still 0.5.4-5.1, built 2026-09-05 (read 2026-09-28) |
 | omarchy-pkgs PR #628 | https://github.com/omacom/omarchy-pkgs/pull/628 | aquamarine 0.15.1-1.1 on edge, aarch64 only: Arch's 0.15.1-1 plus an Apple DCP CRTC-rescan patch; names a follow-up Hyprland rebuild; merged 2026-09-25 |
 | omarchy-pkgs PR #470 | https://github.com/omacom/omarchy-pkgs/pull/470 | `omarchy-steam-fex` for Apple silicon, merged 2026-09-20 |
 | omarchy-pkgs `pkgbuilds/hyprland/.omarchy/package.json` | https://github.com/omacom/omarchy-pkgs | Hyprland aarch64 `rebuilt_against` aquamarine 0.15.0-2 (unchanged 2026-09-28); `pkgbuilds/aquamarine` now exists (PR #628) |
