@@ -1,10 +1,10 @@
-# Try Omarchy roadmap: a proposal for discussion
+# Try Omarchy roadmap: working notes
 
-A community-facing proposal for taking [Try Omarchy](https://github.com/omacom/try-omarchy), the macOS app that runs the Omarchy Linux desktop in a virtual machine on Apple silicon, from "try it" to a daily driver for people whose home base is macOS.
+My working notes on a roadmap for taking [Try Omarchy](https://github.com/omacom/try-omarchy), the macOS app that runs the Omarchy Linux desktop in a virtual machine on Apple silicon, from "try it" to a daily driver for people whose home base is macOS. I keep them here so my thinking stays current and in one place. Anyone is welcome to read them.
 
-Try Omarchy is created and maintained by Eduardo ([@themartiano](https://github.com/themartiano)). This roadmap exists because of what he and the project's contributors have already built, in a few weeks, at a pace few projects manage: the VM, the graphics chain, the host bridges, and a release a week. Thank you. The maintainer decides; this repository proposes.
+Try Omarchy is created and maintained by Eduardo ([@themartiano](https://github.com/themartiano)). These notes exist because of what he and the project's contributors have already built, in a few weeks, at a pace few projects manage: the VM, the graphics chain, the host bridges, and a release a week. Thank you. The maintainer decides; these notes propose.
 
-Status: first draft, for discussion. It exists to start the conversation that leads to a more refined roadmap; nothing in it is settled.
+Status: First draft, for discussion. The discussion will happen in the Omarchy dev Discord once its channel opens; nothing here is settled.
 
 | Document | What it is |
 |---|---|
@@ -15,14 +15,12 @@ Status: first draft, for discussion. It exists to start the conversation that le
 
 Rendered page: https://claude.ai/artifact/NCzK1pkSpjGxpyrVmcNABa
 
-## How to give feedback
+## Where things are
 
-Read the executive briefing first (about ten pages). Then pick the shape that fits:
+The issues are working notes too. Each tracks where my thinking on one item stands and what is open for the maintainer; none of them waits on a reply.
 
-1. **A decision.** The briefing proposes five. Each has its own issue: reply accept, amend (say how), or reject (say why).
-   [#1 Product contract](https://github.com/rdtiv/top/issues/1) · [#2 Update contract](https://github.com/rdtiv/top/issues/2) · [#3 Packaging ownership](https://github.com/rdtiv/top/issues/3) · [#4 VMM bet](https://github.com/rdtiv/top/issues/4) · [#5 v1 definition](https://github.com/rdtiv/top/issues/5)
-2. **A row.** The technical roadmap is numbered rows (2.1, 3.4, ...). Open an issue with the `row` label naming the row, or edit the row in a pull request.
-3. **A correction.** Every claim carries an anchor. If one is wrong, open a `correction` issue with the anchor and the fix, or send a pull request that changes the text and the source index together.
-4. **Something missing.** Anything the documents do not cover goes in [#6 What did the documents miss?](https://github.com/rdtiv/top/issues/6)
+- **Decisions.** The five the briefing proposes: [#1 Product contract](https://github.com/rdtiv/top/issues/1) · [#2 Update contract](https://github.com/rdtiv/top/issues/2) · [#3 Packaging ownership](https://github.com/rdtiv/top/issues/3) · [#4 VMM bet](https://github.com/rdtiv/top/issues/4) · [#5 v1 definition](https://github.com/rdtiv/top/issues/5)
+- **Rows.** Proposed changes to specific roadmap rows: [#7](https://github.com/rdtiv/top/issues/7) · [#8](https://github.com/rdtiv/top/issues/8) · [#9](https://github.com/rdtiv/top/issues/9) · [#10](https://github.com/rdtiv/top/issues/10)
+- **Known gaps.** What the notes do not cover yet: [#6](https://github.com/rdtiv/top/issues/6)
 
-Discussions are open for anything that is not one of those. [CONTRIBUTING.md](CONTRIBUTING.md) has the conventions edits should follow. The maintainer decides; rejected proposals stay in the documents as "declined, because" so the reasoning is kept.
+If you spot a factual error, an issue is welcome, but nothing here waits on replies. [CONTRIBUTING.md](CONTRIBUTING.md) has the conventions the documents follow. Proposals the maintainer declines stay in the documents as "declined, because" so the reasoning is kept.
