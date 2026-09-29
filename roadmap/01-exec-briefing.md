@@ -14,7 +14,7 @@ Try Omarchy runs the Omarchy Linux desktop inside a virtual machine on an Apple 
 - **VMM bet.** Stay on QEMU over Apple's Hypervisor.framework with virgl and ANGLE for graphics. The memory-return work that just shipped used exactly the freedom Hypervisor.framework gives and Virtualization.framework does not.
 - **v1 definition.** Publish a release-readiness document with explicit gates, the way the Windows edition of Try Omarchy now keeps one for every release.
 
-It is written for three people: the operator who runs a business on the Mac, with Windows in Parallels beside Omarchy; the M4 or M5 owner who cannot install native Linux yet; and the agentic developer who runs local models on macOS and builds in Omarchy, a hedge that starts at 64 GB and is comfortable at 128 GB.
+The lane serves three people: the operator who runs a business on the Mac, with Windows in Parallels beside Omarchy; the M4 or M5 owner who cannot install native Linux yet; and the agentic developer who runs local models on macOS and builds in Omarchy, a hedge that starts at 64 GB and is comfortable at 128 GB.
 
 Measured on the author's M4 Pro Mac mini with 0.4.0 on macOS 26.6: the launch-crash reports did not reproduce (two of the three still open are on macOS 27.0, released 2026-09-14), the VM idles at under a tenth of a CPU core, and it shuts down cleanly on request. Everything not in the four asks at the end is marked as the maintainer's call.
 
