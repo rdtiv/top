@@ -10,7 +10,7 @@ Files in this folder, in reading order:
 
 Conventions used in all three:
 
-- File anchors are `path:line` in `omacom/try-omarchy` unless another repository is named. Bare anchors are read at `58cbac5` (main on 2026-09-15); anchors marked "main" are read at `898f920` (2026-09-28), cited by file only where line numbers have moved.
+- File anchors are `path:line` in `omacom/try-omarchy` unless another repository is named. Bare anchors are read at `58cbac5` (main on 2026-09-15); anchors marked "main" are read at `b2a78a1` (2026-09-29), cited by file only where line numbers have moved.
 - "Try" means Try Omarchy for macOS. "try-omarchy-windows" is the Windows project used as the process template. "Parallels" is the Windows VM that runs beside Try on the Mac.
 - Horizons: Horizon 0 unblocks the daily-driver claim; Horizon 1 is what a Mac readiness document gates; Horizon 2 is after v1.
 - "Your call" marks a place where the maintainer decides. The documents propose; they do not assign.
