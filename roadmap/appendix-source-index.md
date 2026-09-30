@@ -1,12 +1,12 @@
 # Appendix: source index
 
-All sources cited by `01-exec-briefing.md` and `02-technical-roadmap.md`. Read dates are 2026-09-15 unless noted; everything added or updated in the 2026-09-28 revision was read on 2026-09-28, and in the 2026-09-29 revision on 2026-09-29. Repository anchors are `path:line` at the stated commit.
+All sources cited by `01-exec-briefing.md` and `02-technical-roadmap.md`. Read dates are 2026-09-15 unless noted; everything added or updated in the 2026-09-28 revision was read on 2026-09-28, in the 2026-09-29 revision on 2026-09-29, and in the 2026-09-30 revision on 2026-09-30. Repository anchors are `path:line` at the stated commit.
 
 ## Repositories read locally
 
 | Repository | Commit / version | Location | Notes |
 |---|---|---|---|
-| omacom/try-omarchy | `58cbac5` (main, 2026-09-15) for the 2026-09-16 anchors; `b2a78a1` (upstream/main, 2026-09-29, unreleased) for everything marked "main" (the 2026-09-22 revision read `7f3ce66`, the 2026-09-28 revision `898f920`) | local checkout | v0.4.1 tagged 2026-09-15 and still the latest release; 43 PRs merged to main since v0.4.1 by 15 authors, as of 2026-09-29 (one commit, #286, since `898f920`) |
+| omacom/try-omarchy | `58cbac5` (main, 2026-09-15) for the 2026-09-16 anchors; `e1a0dbe` (upstream/main, 2026-09-30, unreleased) for everything marked "main" (the 2026-09-22 revision read `7f3ce66`, the 2026-09-28 revision `898f920`, the 2026-09-29 revision `b2a78a1`) | local checkout | v0.4.1 tagged 2026-09-15 and still the latest release; 46 PRs merged to main since v0.4.1 by 15 authors, as of 2026-09-30 (#287, #289 and #290 since `b2a78a1`) |
 | omacom/omarchy | `e48f8382` (quattro, v4.0.0-358, 2026-09-12); `e332dc97` (quattro, 2026-09-28) for the architecture guard | local checkout | v4.0.4 (2026-09-15) still the latest release; still one `uname -m` guard |
 
 ## try-omarchy file anchors used
@@ -30,7 +30,7 @@ All sources cited by `01-exec-briefing.md` and `02-technical-roadmap.md`. Read d
 | `guest/README.md:31-36` | Hyprland is the one source-patched guest package |
 | `guest/pinned-packages/README.md` | aquamarine and hyprtoolkit ABI pin recipes, held together with Hyprland (directory deleted on main by PR #286, 2026-09-29) |
 | `guest/packages.txt:73` | `vulkan-swrast` is the only Vulkan ICD in the guest |
-| `guest/spec.json:24-33` | Pinned Omarchy commit `0534987...`, release 4.0.3, channel quattro |
+| `guest/spec.json:24-33` | Pinned Omarchy commit `0534987...`, release 4.0.3, channel quattro; main pins release 4.0.4, commit `c668141` (#289, 2026-09-30) |
 | `guest/spec.json:239-466` | Thirteen reviewed backports, including aarch64-refusal patches for x86-only installers |
 | `guest/fragments/pre-refresh-pacman-restore-arm.sh` | The restore hook itself |
 | `macos/run-qemu-gpu.sh:21` | `virt,accel=hvf,gic-version=3` |
@@ -42,7 +42,7 @@ All sources cited by `01-exec-briefing.md` and `02-technical-roadmap.md`. Read d
 | `.github/workflows/ci.yml:26-28` | Guest image cannot be built on GitHub-hosted macOS runners |
 | `CONTRIBUTING.md` | "one product target: a native Apple Silicon macOS app that runs pinned upstream Omarchy in a project-built ARM64 virtual machine image" |
 
-## try-omarchy on main at b2a78a1 (read 2026-09-22 at 7f3ce66, re-read 2026-09-28 at 898f920 and 2026-09-29)
+## try-omarchy on main at e1a0dbe (read 2026-09-22 at 7f3ce66, re-read 2026-09-28 at 898f920, 2026-09-29 at b2a78a1 and 2026-09-30)
 
 | Anchor | What it establishes |
 |---|---|
@@ -53,18 +53,19 @@ All sources cited by `01-exec-briefing.md` and `02-technical-roadmap.md`. Read d
 | `guest/packages.lock.json:408` | `"linux-aarch64": "7.2.8-1"` since PR #286; line 409 read `"7.2.6-1"` at `898f920` |
 | `guest/README.md` (b2a78a1) | "Aquamarine 0.15.1-1, Hyprtoolkit 0.6.0-1, and hyprland-guiutils 0.2.2-4 use signed Arch Linux ARM packages from the transaction lock", held with the patched Hyprland on `IgnorePkg`; the keyring-seeding note from omarchy-pkgs `7e448b9` (pinned before `898f920`) moved here from the deleted `guest/pinned-packages/README.md` |
 | `docs/architecture.md` (b2a78a1) | The held set uses signed upstream ARM packages "so updates cannot split the validated graphics stack"; the aquamarine and Hyprtoolkit rebuild passage is gone |
-| `guest/native-overlay/usr/local/bin/omarchy-native-mac-share:85` | 9p mount with `cache=mmap` |
+| `guest/native-overlay/usr/local/bin/omarchy-native-mac-share:86` | 9p mount with `cache=readahead` since #287; line 85 read `cache=mmap` at `b2a78a1` |
+| `docs/integration-updates.md` (e1a0dbe) | "The shared-folder safety mitigation is supplied automatically by the app at boot, separately from this review workflow" |
 | `macos/Sources/OmarchyVMHelper/GuestIntegrationStatus.swift` | `NSStatusItem` "VM integrations" created by the integration bridge process |
-| `macos/run-qemu-gpu.sh:1901` | The launcher script starts `--bridge-integrations` as its own process beside QEMU |
+| `macos/run-qemu-gpu.sh:1940` | The launcher script starts `--bridge-integrations` as its own process beside QEMU |
 | `macos/Info.plist:29` | `LSUIElement` true |
 | `macos/qemu-port-forwarding.sh:13` | `QEMU_PORT_FORWARDING_NETDEV='user,id=omarchy-net'`: the NAT netdev has no `restrict` option, so `10.0.2.2` reaches services bound to the Mac's 127.0.0.1 |
-| `README.md:427-428` | NAT mode (the default): "From Omarchy, connect to `10.0.2.2:<Mac port>` to reach a service running on the Mac"; no port forward needed for guest-to-Mac connections. The user netdev has no `restrict` option (`macos/qemu-port-forwarding.sh`), so 10.0.2.2 reaches services bound to the Mac's 127.0.0.1; bridged mode has no 10.0.2.2 |
+| `README.md:433-434` | NAT mode (the default): "From Omarchy, connect to `10.0.2.2:<Mac port>` to reach a service running on the Mac"; no port forward needed for guest-to-Mac connections. The user netdev has no `restrict` option (`macos/qemu-port-forwarding.sh`), so 10.0.2.2 reaches services bound to the Mac's 127.0.0.1; bridged mode has no 10.0.2.2 |
 | `README.md` "Passing a USB device to Omarchy (experimental)" | One device, off until chosen; "Unprivileged, which is how this app ships"; `com.apple.vm.device-access` or root needed for driver-claimed devices; "Which door to open is a decision for whoever ships the app" |
 | `docs/memory-reclamation.md` | `virtio-balloon-pci,free-page-reporting=on` plus pinned HVF reclaim patch (unmap, demand-zero remap, acknowledge); asynchronous; needs runtime update and VM restart, not a new disk |
 | `docs/app-updates.md` | Version display and opt-in release checks (#234); Sparkle 2 recommended for installation; prerequisites listed |
 | `docs/architecture.md` (diff vs 58cbac5) | aquamarine 0.15.1-1 / libaquamarine.so=14 against Hyprland 0.56.2 (read at `898f920`; passage removed by PR #286); battery port `dev.tryomarchy.battery`; macOS 15 on EL1, VirGL source-built for 15.0; Traditional Chinese kernel argument; disk capacity |
 | `macos/build-qemu-gpu-runtime.sh` | VirGL 1.3.0 from gitlab.freedesktop.org source with startergo tap v1.0.42 patches; ANGLE 1.0.16 and libepoxy 1.0.5 still from bottles |
-| `macos/Sources/OmarchyVMHelper/VMApplicationController.swift` (`shutDownForSettings`) | `system_powerdown` over QMP is used by the restart-for-settings path; app quit still forwards SIGTERM (line 465 at b2a78a1) |
+| `macos/Sources/OmarchyVMHelper/VMApplicationController.swift` (`shutDownForSettings`) | `system_powerdown` over QMP is used by the restart-for-settings path; app quit still forwards SIGTERM (line 465 at e1a0dbe) |
 | `README.md` (main) | Start automatically; Try Omarchy Settings; Shut down to manage…; Maximum disk size 64 GiB; Ghostty; stable bridged MAC; Touch ID for 1Password; clock recovery; memory reclamation; Traditional Chinese |
 
 ## omarchy file anchors used
@@ -144,7 +145,8 @@ Verbatim maintainer and contributor quotes appear in `02-technical-roadmap.md` r
 | try-omarchy #285 | Build the guest from the official Omarchy ARM mirror (stevederico): "as discussed with @themartiano", the Omarchy ARM mirror and later the installer team's ARM image, with Try's VM patches on top; prototype branch `exp/omarchy-edge-stack` reached the Hyprland desktop on an M4 Mac mini (macOS 26.6), and an M3 MacBook Air (macOS 15) also built the guest; three options for Hyprland and #5; 12 Install entries with no aarch64 build; "nothing here is decided" | open, 2026-09-29 (findings checked 2026-09-28) |
 | try-omarchy #180 | `neovim`: upstream installs `omarchy-nvim`, which is on the edge tier only (2026-09-29 comment) | open |
 | try-omarchy PR #270, #274, #276, #283, #279 | Stable ARM repository and guest migration (fixes #261); ARM Install-menu gaps (fixes #264); Spotify web app on ARM64 (refs #263); audio mixer at the Mac output rate (fixes #265); Command chord under full grab (refs #181) | open (read 2026-09-28) |
-| try-omarchy #281 | Shared folder `cache=mmap` on `linux-aarch64 7.2.6-1`, inside a netfs/9p regression (7.1-rc5 to 7.3-rc2, writeback cache modes) that can return or write NUL bytes; fix first in 7.2.8 (PiaoyangGuohai1) | open, 2026-09-28 |
+| try-omarchy #281 | Shared folder `cache=mmap` on `linux-aarch64 7.2.6-1`, inside a netfs/9p regression (7.1-rc5 to 7.3-rc2, writeback cache modes) that can return or write NUL bytes; fix first in 7.2.8 (PiaoyangGuohai1) | closed 2026-09-30 by PR #287 |
+| try-omarchy PR #287, #289, #290 | Shares mounted `cache=readahead`, with existing VMs covered through the app's read-only boot payload, masking the old mount service for that boot (fixes #281); Omarchy 4.0.4 in the factory, package lock unchanged by #289; the guest follows the Mac time zone over a new `dev.tryomarchy.timezone` channel, delivered to existing guests through the boot payload (all themartiano) | merged 2026-09-30 (read 2026-09-30) |
 | try-omarchy #280, #266 | `make guest` fails: `hyprland-guiutils` 0.2.2-3 gone from Arch Linux ARM, 0.2.2-4 needs `libhyprtoolkit.so=6`; `omarchy update` fails the same way | #280 open (PR #286's author reports `make build` passing on main; not independently confirmed); #266 closed 2026-09-28 by PR #268 |
 | try-omarchy #261, #262, #263, #264 | Guest `[omarchy]` repo at `pkgs.omarchy.org/$arch`, whose `omarchy.db` holds only `omarchy-keyring` (read 2026-09-30); apps aarch64 on edge only; Install menu offers apps with no aarch64 build; raw `target not found` (seadogger; #262 as filed 2026-09-25, before stable gained some of those apps) | open |
 | try-omarchy #257, #258, #259, #265 | #233's 1Password fix in no release; in-app disk resize; lock screen not working; guest audio ~6% fast (a 2026-09-28 follow-up measured about 4.8% fast at a 48 kHz Mac output, 0.3% at 44.1 kHz) | #259 closed 2026-09-28 by PR #272; others open |

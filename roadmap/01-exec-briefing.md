@@ -1,8 +1,8 @@
 # Try Omarchy as the macOS-resident Omarchy M lane: five decisions and a v1
 
-As of 2026-09-29. Written against upstream main at commit b2a78a1 (unreleased; the last tagged release is v0.4.1 from 2026-09-15) and measured on a Mac mini M4 Pro (24 GB, macOS 26.6.2, build 25G83) running the installed 0.4.0 app. Every file anchor, issue number, and URL is listed in the source index that accompanies this briefing. A longer technical roadmap sits behind this document; stop here unless you want the problem graph.
+As of 2026-09-30. Written against upstream main at commit e1a0dbe (unreleased; the last tagged release is v0.4.1 from 2026-09-15) and measured on a Mac mini M4 Pro (24 GB, macOS 26.6.2, build 25G83) running the installed 0.4.0 app. Every file anchor, issue number, and URL is listed in the source index that accompanies this briefing. A longer technical roadmap sits behind this document; stop here unless you want the problem graph.
 
-Status: First draft, for discussion. The discussion will happen in the Omarchy dev Discord once its channel opens; nothing here is settled. First written 2026-09-16; this revision absorbs the forty-three pull requests merged since v0.4.1.
+Status: First draft, for discussion. Discussion with the maintainer is under way; nothing here is settled. First written 2026-09-16; this revision absorbs the forty-six pull requests merged since v0.4.1.
 
 ## TL;DR
 
@@ -16,7 +16,7 @@ Try Omarchy runs the Omarchy Linux desktop inside a virtual machine on an Apple 
 
 The lane serves three people: the operator who runs a business on the Mac, with Windows in Parallels beside Omarchy; the M4 or M5 owner who cannot install native Linux yet; and the agentic developer who runs local models on macOS and builds in Omarchy, a hedge that starts at 64 GB and is comfortable at 128 GB.
 
-Measured on the author's M4 Pro Mac mini with 0.4.0 on macOS 26.6: the launch-crash reports did not reproduce (the two still open are on macOS 27.0, released 2026-09-14), the VM idles at under a tenth of a CPU core, and it shuts down cleanly on request. Everything not in the four asks at the end is marked as the maintainer's call.
+Measured on the author's M4 Pro Mac mini with 0.4.0 on macOS 26.6: the launch-crash reports did not reproduce (the two still open are on macOS 27.0, released 2026-09-14), the VM idles at under a tenth of a CPU core, and it shuts down cleanly on request.
 
 ## Terms used
 
@@ -50,7 +50,7 @@ One disclosure so nothing here reads as more than it is: my involvement with the
 
 ## Thesis
 
-Daily-driver Try Omarchy is blocked by a small number of foundational constraints, not by a long feature list, and the list got shorter this month. Since v0.4.1, forty-three pull requests landed on main from fifteen people, none yet released, among them an integration manager for existing VMs (#193), memory return to macOS (#243), automatic startup and a clean restart path (#152), configurable disk capacity (#246), and macOS 15 restored with a source-built renderer (#242). That velocity is itself a finding: the roadmap's job is less "what to build" than "what to say no to, and what to write down so the work stays coherent".
+Daily-driver Try Omarchy is blocked by a small number of foundational constraints, not by a long feature list, and the list got shorter this month. Since v0.4.1, forty-six pull requests landed on main from fifteen people, none yet released, among them an integration manager for existing VMs (#193), memory return to macOS (#243), automatic startup and a clean restart path (#152), configurable disk capacity (#246), and macOS 15 restored with a source-built renderer (#242). That velocity is itself a finding: the roadmap's job is less "what to build" than "what to say no to, and what to write down so the work stays coherent".
 
 What remains foundational: the integration manager does not yet carry the kernel, the graphics runtime, package holds, or the reviewed backports; Try still carries its own compositor set (a patched Hyprland plus held Arch Linux ARM libraries) rather than the shared channel, which now trails it on hyprtoolkit and guiutils; the project has not validated the app on macOS 27, which shipped on 2026-09-14 and is where most of the recent launch-crash reports come from; and the memory-return work has been validated on a headless VM but not on desktop workloads or macOS 26. Everything else that people associate with "daily driver" (hardware video decoding, multiple monitors, snapshots, deeper Apple ecosystem integration) is either in progress, a product choice you can make explicitly, or belongs after v1.
 
@@ -106,7 +106,7 @@ Your call: the wording, and whether to say it in the Omarchy M channel or only i
 
 ### 2. Update contract: extend the integration manager until nothing needs a factory reset
 
-This is Horizon 0, and its first piece shipped on 2026-09-21. PR #193 built the shape a Try update channel needed: a read-only share, hash-verified bundles, root-private backups, resumable installs, and a status port back to the Mac. Its payloads are sudo Touch ID and, since #252, the Mac battery mirror. By its own design note it excludes the kernel and graphics packages, hold repair, 1Password, and clock recovery. #185, #152, and #243 deliver their pieces by their own routes. So an existing VM can take some of Try's fixes, three different ways, but not the kernel pair, the graphics runtime, or the reviewed backports. The kernel is now a live case: #281 reports a shared-folder data-integrity bug in the pinned guest kernel, fixed in kernel 7.2.8, which #286 (merged 2026-09-29) brings to new factories while existing VMs keep the held kernel.
+This is Horizon 0, and its first piece shipped on 2026-09-21. PR #193 built the shape a Try update channel needed: a read-only share, hash-verified bundles, root-private backups, resumable installs, and a status port back to the Mac. Its payloads are sudo Touch ID and, since #252, the Mac battery mirror. By its own design note it excludes the kernel and graphics packages, hold repair, 1Password, and clock recovery. #185, #152, and #243 deliver their pieces by their own routes. So an existing VM can take some of Try's fixes, three different ways, but not the kernel pair, the graphics runtime, or the reviewed backports. The kernel is now a live case: #281 reports a shared-folder data-integrity bug in the pinned guest kernel, fixed in kernel 7.2.8, which #286 (merged 2026-09-29) brings to new factories; existing VMs keep the held kernel, and since #287 (2026-09-30) mount the share without writeback caching through the app's boot payload.
 
 The evidence is on my machine. The guest I created on 2 September from the v0.3.0 factory still runs an audio bridge script that leaks a set of PipeWire (the Linux audio server) modules on every restart; it restarted 284 times, exhausted the audio server's file descriptors, and retried once a second for five days. An input-method service (fcitx5) that upstream has since fixed restarted 333,398 times on the same guest. Those are exactly the class of fix the integration manager exists to carry.
 
